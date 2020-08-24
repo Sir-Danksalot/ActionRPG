@@ -1,0 +1,69 @@
+extends KinematicBody2D
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
+
+enum{
+	MOVE
+	ROLL
+	ATTACK
+}
+
+var Velocity = Vector2.ZERO
+var Input_Vector = Vector2.ZERO
+var state = MOVE
+
+export var Max_Velocity = 150
+export var Acceleration = 600
+export var Static_Friction = 1200
+export var Kinetic_Friction = 300
+
+onready var animationPlayer = $AnimationPlayer
+onready var animationTree = $AnimationTree
+onready var animationState = animationTree.get("parameters/playback")
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	animationTree.active = true # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+
+func _process(delta):
+	match state:
+		MOVE:
+			_move_state(delta)
+		ROLL:
+			pass
+		ATTACK:
+			_attack_state(delta)
+
+func _move_state(delta):
+	Input_Vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	Input_Vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	
+	if Input_Vector == Vector2.ZERO:
+		animationState.travel("idle_blend")
+		Velocity = Velocity.move_toward(Vector2.ZERO, Static_Friction * delta)
+	else:
+		animationTree.set("parameters/idle_blend/blend_position", Input_Vector)
+		animationTree.set("parameters/run_blend/blend_position", Input_Vector)
+		animationTree.set("parameters/attack_blend/blend_position", Input_Vector)
+		animationState.travel("run_blend")
+		Velocity = Velocity.move_toward(Vector2.ZERO, Kinetic_Friction * delta)
+		Velocity = Velocity.move_toward(Input_Vector.normalized() * Max_Velocity, Acceleration * delta)
+	#print(Velocity)
+	Velocity = move_and_slide(Velocity) #move_and_collide(Velocity * delta)
+	if Input.is_action_just_pressed("attack"):
+		state = ATTACK
+
+func _attack_state(delta):
+	Velocity = Vector2.ZERO
+	animationState.travel("attack_blend")
+
+func _attack_animation_finished():
+	state = MOVE
