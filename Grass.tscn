@@ -38,7 +38,7 @@ height = 1.76759
 
 [node name="Grass" type="Area2D"]
 collision_layer = 8
-collision_mask = 4
+collision_mask = 0
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -57,5 +57,5 @@ offset = Vector2( -8, -8 )
 position = Vector2( 7.4955, 7.92434 )
 rotation = 1.5708
 shape = SubResource( 7 )
-[connection signal="body_entered" from="." to="." method="_on_Grass_body_entered"]
+[connection signal="area_entered" from="." to="." method="_on_Grass_area_entered"]
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

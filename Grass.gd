@@ -20,7 +20,7 @@ func _ready():
 func _on_AnimatedSprite_animation_finished():
 	queue_free() # Replace with function body.
 
-func _on_Grass_body_entered(_body):
+func _on_Grass_area_entered(_area):
 	sprite.visible = false
 	animatedSprite.frame = 0
 	animatedSprite.visible = true

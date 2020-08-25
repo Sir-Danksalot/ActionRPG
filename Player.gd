@@ -23,10 +23,12 @@ export var Kinetic_Friction = 300
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
+onready var meleeCollisionShape = $Melee_Controller/Melee_CollisionShape
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animationTree.active = true # Replace with function body.
+	meleeCollisionShape.disabled = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
