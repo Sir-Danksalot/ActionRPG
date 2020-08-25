@@ -33,7 +33,7 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func _process(delta):
+func _physics_process(delta):
 	match state:
 		MOVE:
 			_move_state(delta)
@@ -61,7 +61,7 @@ func _move_state(delta):
 	if Input.is_action_just_pressed("attack"):
 		state = ATTACK
 
-func _attack_state(delta):
+func _attack_state(_delta):
 	Velocity = Vector2.ZERO
 	animationState.travel("attack_blend")
 

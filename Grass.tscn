@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Action RPG Resources/World/Grass.png" type="Texture" id=1]
 [ext_resource path="res://Action RPG Resources/Effects/GrassEffect.png" type="Texture" id=2]
@@ -32,7 +32,13 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="CapsuleShape2D" id=7]
+radius = 5.26513
+height = 1.76759
+
 [node name="Grass" type="Area2D"]
+collision_layer = 8
+collision_mask = 4
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -41,8 +47,15 @@ centered = false
 offset = Vector2( -8, -8 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+visible = false
 frames = SubResource( 6 )
 animation = "decay"
 centered = false
 offset = Vector2( -8, -8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 7.4955, 7.92434 )
+rotation = 1.5708
+shape = SubResource( 7 )
+[connection signal="body_entered" from="." to="." method="_on_Grass_body_entered"]
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

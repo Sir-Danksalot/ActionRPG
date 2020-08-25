@@ -13,16 +13,15 @@ func _ready():
 	sprite.visible = true
 	pass # Replace with function body.
 
-func _process(_delta):
-	if Input.is_action_just_pressed("attack"):
-		sprite.visible = false
-		animatedSprite.frame = 0
-		animatedSprite.visible = true
-		animatedSprite.play("decay")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 
-
 func _on_AnimatedSprite_animation_finished():
 	queue_free() # Replace with function body.
+
+func _on_Grass_body_entered(_body):
+	sprite.visible = false
+	animatedSprite.frame = 0
+	animatedSprite.visible = true
+	animatedSprite.play("decay")
