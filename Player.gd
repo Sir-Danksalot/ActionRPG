@@ -13,7 +13,7 @@ enum{
 
 var Velocity = Vector2.ZERO
 var Input_Vector = Vector2.ZERO
-var Roll_Vector = Vector2.DOWN
+var Roll_Vector = Vector2.LEFT
 var state = MOVE
 
 export var Max_Velocity = 150
