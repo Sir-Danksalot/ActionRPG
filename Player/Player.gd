@@ -25,6 +25,7 @@ export var Roll_Speed = 150
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
+onready var meleeCollision = $Melee_Controller
 onready var meleeCollisionShape = $Melee_Controller/Melee_CollisionShape
 
 # Called when the node enters the scene tree for the first time.
@@ -54,6 +55,7 @@ func _move_state(delta):
 		Velocity = Velocity.move_toward(Vector2.ZERO, Static_Friction * delta)
 	else:
 		Roll_Vector = Input_Vector
+		meleeCollision.setImpactDir(Input_Vector.normalized())
 		animationTree.set("parameters/idle_blend/blend_position", Input_Vector)
 		animationTree.set("parameters/run_blend/blend_position", Input_Vector)
 		animationTree.set("parameters/attack_blend/blend_position", Input_Vector)
