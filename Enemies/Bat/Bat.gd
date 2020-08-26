@@ -13,6 +13,7 @@ export var MaxHealth = 1.0
 
 onready var animSprite = $AnimatedSprite
 onready var shadSprite = $ShadowSprite
+onready var bodyStats = $BodyStats
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animSprite.visible = true
@@ -28,5 +29,9 @@ func _physics_process(delta):
 
 
 func _on_HitboxController_area_entered(area):
-	area.computeDamage()
+	bodyStats.damage(area.computeDamage())
 	velocity = area.getImpactDir() * Knockback
+
+
+func _on_BodyStats_dead():
+	queue_free()
