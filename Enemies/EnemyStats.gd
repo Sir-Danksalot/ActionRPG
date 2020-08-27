@@ -4,8 +4,11 @@ extends Node
 # var a = 2
 # var b = "text"
 
+enum {ALIVE, DEAD}
+
 export(int) var maxHealth
 var health
+var life
 
 signal dead
 
@@ -20,14 +23,22 @@ func getHealth():
 
 func setHealth(hp):
 	health = min(hp, maxHealth)
+	checkDeath()
 
 func forceSetHealth(hp):
 	health = hp
-	
+
+func checkAlive():
+	return life == ALIVE
+
 func checkDeath():
 	if health <= 0:
-		emit_signal("dead")
-		
+		if life == ALIVE:
+			emit_signal("dead")
+		life = DEAD
+	else:
+		life = ALIVE
+
 func damage(dmg):
 	health -= dmg
 	checkDeath()
