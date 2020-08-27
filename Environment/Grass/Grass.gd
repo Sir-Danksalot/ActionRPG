@@ -9,8 +9,8 @@ onready var animatedSprite = $AnimatedSprite
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	animatedSprite.visible = false
-	sprite.visible = true
+	animatedSprite.set_visible(false)
+	sprite.set_visible(true)
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,7 +21,7 @@ func _on_AnimatedSprite_animation_finished():
 	queue_free() # Replace with function body.
 
 func _on_Grass_area_entered(_area):
-	sprite.visible = false
-	animatedSprite.frame = 0
-	animatedSprite.visible = true
+	sprite.set_visible(false)
+	animatedSprite.set_frame(0)
+	animatedSprite.set_visible(true)
 	animatedSprite.play("decay")

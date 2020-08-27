@@ -30,8 +30,8 @@ onready var meleeCollisionShape = $Melee_Controller/Melee_CollisionShape
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	animationTree.active = true # Replace with function body.
-	meleeCollisionShape.disabled = true
+	animationTree.set_active(true) # Replace with function body.
+	meleeCollisionShape.set_disabled(true)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

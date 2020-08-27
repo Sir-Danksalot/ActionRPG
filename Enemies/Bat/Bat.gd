@@ -16,8 +16,10 @@ onready var shadSprite = $ShadowSprite
 onready var bodyStats = $BodyStats
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	animSprite.visible = true
-	shadSprite.visible = true
+	animSprite.set_animation("Fly")
+	animSprite.set_visible(true)
+	animSprite._set_playing(true)
+	shadSprite.set_visible(true)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
