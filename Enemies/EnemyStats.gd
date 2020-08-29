@@ -10,7 +10,7 @@ export(int) var maxHealth
 var health
 var life
 
-signal dead
+signal death
 
 func getMaxHealth():
 	return maxHealth
@@ -31,14 +31,14 @@ func forceSetHealth(hp):
 func checkAlive():
 	return life == ALIVE
 
-func checkDeath():
+func checkDeath(): #Checks if dead and if a transition from Alive to Dead is detected emits the "death" signal
 	if health <= 0:
 		if life == ALIVE:
-			emit_signal("dead")
+			emit_signal("death")
 		life = DEAD
 	else:
 		life = ALIVE
 
-func damage(dmg):
+func damage(dmg): #Reduces health and checks for death
 	health -= dmg
 	checkDeath()

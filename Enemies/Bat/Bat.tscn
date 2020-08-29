@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Action RPG Resources/Shadows/SmallShadow.png" type="Texture" id=1]
 [ext_resource path="res://Action RPG Resources/Enemies/Bat.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Enemies/Bat/BodyStats.gd" type="Script" id=4]
 [ext_resource path="res://Action RPG Resources/Effects/HitEffect.png" type="Texture" id=5]
 [ext_resource path="res://Action RPG Resources/Effects/EnemyDeathEffect.png" type="Texture" id=6]
+[ext_resource path="res://Enemies/Utility/PlayerDetector.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 2.94795
@@ -104,8 +105,11 @@ animations = [ {
 radius = 7.94455
 height = 6.07859
 
+[sub_resource type="CircleShape2D" id=22]
+radius = 117.972
+
 [node name="Bat" type="KinematicBody2D"]
-collision_layer = 24
+collision_layer = 16
 collision_mask = 3
 script = ExtResource( 3 )
 
@@ -137,5 +141,11 @@ shape = SubResource( 8 )
 
 [node name="BodyStats" type="Node" parent="."]
 script = ExtResource( 4 )
+
+[node name="PlayerDetector" parent="." instance=ExtResource( 7 )]
+
+[node name="DetectionShape" parent="PlayerDetector" index="0"]
+shape = SubResource( 22 )
 [connection signal="area_entered" from="HitboxController" to="." method="_on_HitboxController_area_entered"]
-[connection signal="dead" from="BodyStats" to="." method="_on_BodyStats_dead"]
+
+[editable path="PlayerDetector"]
