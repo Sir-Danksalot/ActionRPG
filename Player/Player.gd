@@ -27,11 +27,15 @@ onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
 onready var meleeCollision = $Melee_Controller
 onready var meleeCollisionShape = $Melee_Controller/Melee_CollisionShape
+onready var statsController = $StatsController
+onready var hurtboxController = $HurtboxController
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animationTree.set_active(true) # Replace with function body.
 	meleeCollisionShape.set_disabled(true)
+	statsController.connect("death",self,"_on_Death")
+	hurtboxController.connect("area_entered",statsController,"_on_Hurtbox_area_entered")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -77,7 +81,6 @@ func _attack_state(_delta):
 func _attack_animation_finished():
 	state = MOVE
 
-
 func _roll_state(_delta):
 	Velocity = Roll_Vector.normalized() * Roll_Speed
 	animationState.travel("roll_blend")
@@ -85,3 +88,9 @@ func _roll_state(_delta):
 
 func _roll_animation_finished():
 	state = MOVE
+
+func _on_Death():
+	queue_free()
+
+#func _on_Hurtbox_activated(hostile):
+#	pass

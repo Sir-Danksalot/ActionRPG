@@ -21,6 +21,8 @@ onready var shadSprite = $ShadowSprite
 onready var bodyStats = $BodyStats
 onready var efSprite = $EffectSprite
 onready var playerDetector = $PlayerDetector
+onready var hurtboxController = $HurtboxController
+onready var hitboxController = $HitboxController
 #onready var detectionShape = $PlayerDetector/DetectionShape
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,7 +33,10 @@ func _ready():
 	shadSprite.set_visible(true)
 	efSprite.connect("animation_finished",self,"_hit_effect_done")
 	bodyStats.connect("death",self,"_on_BodyStats_death")
+	bodyStats.connect("death",hitboxController,"_pacify")
 	playerDetector.connect("player_detected",self,"_on_player_detected")
+	hurtboxController.connect("area_entered",self,"_on_Hurtbox_area_entered")
+	hurtboxController.connect("area_entered",bodyStats,"_on_Hurtbox_area_entered")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -61,8 +66,7 @@ func _on_player_detected():#_relpos):
 func _on_player_lost():#_lkp):
 	state = TRACK
 
-func _on_HitboxController_area_entered(area): #Detects Collision from Player weapon
-	bodyStats.damage(area.computeDamage())
+func _on_Hurtbox_area_entered(area): #Detects Collision from Player weapon
 	_display_hit()
 	velocity = area.getImpactDir() * Knockback
 

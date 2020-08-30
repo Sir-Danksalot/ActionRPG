@@ -101,8 +101,12 @@ roll={
 2d_physics/layer_1="World Inhabitants"
 2d_physics/layer_2="Player Structure"
 2d_physics/layer_3="Player Hitbox"
-2d_physics/layer_4="Destructible Hitbox"
+2d_physics/layer_4="Destructible Hurtbox"
 2d_physics/layer_5="NPC Structure"
+2d_physics/layer_6="Hostile Hitbox"
+2d_physics/layer_7="Player Hurtbox"
+2d_physics/layer_8="NPC Hurtbox"
+2d_physics/layer_9="NPC Hitbox"
 
 [rendering]
 

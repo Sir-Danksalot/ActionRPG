@@ -29,7 +29,9 @@ func getRawLastKnownPosition():
 	return rawLastKnownPosition
 
 func _ready():
+# warning-ignore:return_value_discarded
 	self.connect("body_entered",self,"_playerBodyDetected")
+# warning-ignore:return_value_discarded
 	self.connect("body_exited",self,"_playerBodyLeft")
 
 #Next few need to be modified for multiplayer

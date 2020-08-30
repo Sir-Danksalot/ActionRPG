@@ -1,14 +1,10 @@
 extends Node
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 enum {ALIVE, DEAD}
 
 export(int) var maxHealth
 var health
-var life
+var life = ALIVE
 
 signal death
 
@@ -42,3 +38,6 @@ func checkDeath(): #Checks if dead and if a transition from Alive to Dead is det
 func damage(dmg): #Reduces health and checks for death
 	health -= dmg
 	checkDeath()
+
+func _on_Hurtbox_area_entered(hitbox): #Detects Collision from hitbox
+	damage(hitbox.computeDamage())
