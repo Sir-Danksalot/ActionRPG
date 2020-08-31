@@ -6,6 +6,7 @@ export(int) var maxHealth
 var health
 var life = ALIVE
 
+signal health_changed(health)
 signal death
 
 func getMaxHealth():
@@ -19,6 +20,7 @@ func getHealth():
 
 func setHealth(hp):
 	health = min(hp, maxHealth)
+	emit_signal("health_changed",health)
 	checkDeath()
 
 func forceSetHealth(hp):
@@ -35,9 +37,11 @@ func checkDeath(): #Checks if dead and if a transition from Alive to Dead is det
 	else:
 		life = ALIVE
 
-func damage(dmg): #Reduces health and checks for death
-	health -= dmg
+func changeHealth(difference): #Reduces health and checks for death
+	if difference != 0:
+		health += difference
+		emit_signal("health_changed",health)
 	checkDeath()
 
 func _on_Hurtbox_area_entered(hitbox): #Detects Collision from hitbox
-	damage(hitbox.computeDamage())
+	changeHealth(-1*hitbox.computeDamage())
