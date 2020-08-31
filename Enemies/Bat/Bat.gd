@@ -31,6 +31,7 @@ func _ready():
 	shadSprite.set_visible(true)
 	bodyStats.connect("death",self,"_on_BodyStats_death")
 	bodyStats.connect("death",hitboxController,"_pacify")
+	bodyStats.connect("death",hurtboxController,"_parent_death")
 	playerDetector.connect("player_detected",self,"_on_player_detected")
 	hurtboxController.connect("area_entered",self,"_on_Hurtbox_area_entered")
 	hurtboxController.connect("area_entered",bodyStats,"_on_Hurtbox_area_entered")
@@ -69,6 +70,7 @@ func _on_Hurtbox_area_entered(area): #Detects Collision from Player weapon
 
 func _on_BodyStats_death(): #Called when "death" signal received by BodyStats, emitted the first time health goes <= 0
 	thrust = 0
+	#shadSprite.set_visible(false)
 	self.set_collision_layer_bit(4,false)
 	self.set_collision_mask_bit(1,false)
 	animSprite.set_animation("Die")

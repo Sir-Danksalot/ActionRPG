@@ -86,20 +86,20 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=21]
+[sub_resource type="CapsuleShape2D" id=18]
 radius = 8.0
 height = 6.0
 
-[sub_resource type="CircleShape2D" id=22]
+[sub_resource type="CircleShape2D" id=19]
 radius = 117.972
 
-[sub_resource type="CapsuleShape2D" id=23]
+[sub_resource type="CapsuleShape2D" id=20]
 radius = 9.0
 height = 8.0
 
 [node name="Bat" type="KinematicBody2D"]
 collision_layer = 16
-collision_mask = 3
+collision_mask = 19
 script = ExtResource( 3 )
 
 [node name="MovementCollision" type="CollisionShape2D" parent="."]
@@ -120,7 +120,7 @@ collision_mask = 260
 
 [node name="Hurtbox" parent="HurtboxController" index="0"]
 position = Vector2( 0, -12 )
-shape = SubResource( 21 )
+shape = SubResource( 18 )
 
 [node name="BodyStats" type="Node" parent="."]
 script = ExtResource( 4 )
@@ -128,7 +128,7 @@ script = ExtResource( 4 )
 [node name="PlayerDetector" parent="." instance=ExtResource( 7 )]
 
 [node name="DetectionShape" parent="PlayerDetector" index="0"]
-shape = SubResource( 22 )
+shape = SubResource( 19 )
 
 [node name="HitboxController" parent="." instance=ExtResource( 9 )]
 collision_layer = 32
@@ -136,7 +136,7 @@ collision_mask = 192
 
 [node name="Hitbox" parent="HitboxController" index="0"]
 position = Vector2( 0, -12 )
-shape = SubResource( 23 )
+shape = SubResource( 20 )
 
 [editable path="HurtboxController"]
 

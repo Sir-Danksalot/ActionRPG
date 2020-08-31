@@ -488,11 +488,13 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 [node name="World" type="Node2D"]
 script = ExtResource( 10 )
 
+[node name="WorldPOV" type="Camera2D" parent="."]
+
 [node name="Background_grass" type="Sprite" parent="."]
 position = Vector2( 160, 90 )
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 320, 180 )
+region_rect = Rect2( 0, -228.269, 999.68, 878.117 )
 
 [node name="Dirt_Path_TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
@@ -570,7 +572,19 @@ position = Vector2( 21.558, 169.501 )
 [node name="TREE(3)5" parent="YSort/Trees" instance=ExtResource( 8 )]
 position = Vector2( 118.375, 87.437 )
 
-[node name="Bat" parent="YSort" instance=ExtResource( 7 )]
-position = Vector2( 162.639, 55.8482 )
+[node name="Bats" type="YSort" parent="YSort"]
 
-[node name="PlayerHealthUI" parent="." instance=ExtResource( 9 )]
+[node name="Bat" parent="YSort/Bats" instance=ExtResource( 7 )]
+position = Vector2( 184.154, 10.0521 )
+
+[node name="Bat2" parent="YSort/Bats" instance=ExtResource( 7 )]
+position = Vector2( 310.473, 172.267 )
+
+[node name="Bat3" parent="YSort/Bats" instance=ExtResource( 7 )]
+position = Vector2( 87.0249, 188.25 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerHealthUI" parent="CanvasLayer" instance=ExtResource( 9 )]
+
+[editable path="YSort/Bats/Bat2"]

@@ -35,6 +35,7 @@ func _ready():
 	animationTree.set_active(true) # Replace with function body.
 	meleeCollisionShape.set_disabled(true)
 	statsController.connect("death",self,"_on_Death")
+	statsController.connect("death",hurtboxController,"_parent_death")
 	hurtboxController.connect("area_entered",statsController,"_on_Hurtbox_area_entered")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -90,6 +91,7 @@ func _roll_animation_finished():
 	state = MOVE
 
 func _on_Death(): #Atm player dies before final hit animation plays, but can fix this by adding dying animation
+	yield(get_tree().create_timer(1), "timeout") #ADD AN ACTUAL FOOKIN DEATH ANIMATION REEEEEEEEEE
 	queue_free()
 
 #func _on_Hurtbox_activated(hostile):
