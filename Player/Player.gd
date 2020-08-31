@@ -89,7 +89,7 @@ func _roll_state(_delta):
 func _roll_animation_finished():
 	state = MOVE
 
-func _on_Death():
+func _on_Death(): #Atm player dies before final hit animation plays, but can fix this by adding dying animation
 	queue_free()
 
 #func _on_Hurtbox_activated(hostile):

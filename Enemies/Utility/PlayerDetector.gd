@@ -41,7 +41,7 @@ func _playerBodyDetected(plyr):
 	rawLastKnownPosition = player.get_global_position()
 	emit_signal("player_detected")#,getLastKnownPosition())
 
-func _playerBodyLeft(_plyr):
-	rawLastKnownPosition = player.get_global_position()
+func _playerBodyLeft(plyr):
+	rawLastKnownPosition = plyr.get_global_position()
 	player = null
 	emit_signal("player_lost")#,getLastKnownPosition())

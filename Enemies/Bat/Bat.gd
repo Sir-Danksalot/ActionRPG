@@ -19,24 +19,22 @@ export var Track_Speed = 60
 onready var animSprite = $AnimatedSprite
 onready var shadSprite = $ShadowSprite
 onready var bodyStats = $BodyStats
-onready var efSprite = $EffectSprite
 onready var playerDetector = $PlayerDetector
 onready var hurtboxController = $HurtboxController
 onready var hitboxController = $HitboxController
 #onready var detectionShape = $PlayerDetector/DetectionShape
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	efSprite.set_visible(false)
 	animSprite.set_animation("Fly")
 	animSprite.set_visible(true)
 	animSprite._set_playing(true)
 	shadSprite.set_visible(true)
-	efSprite.connect("animation_finished",self,"_hit_effect_done")
 	bodyStats.connect("death",self,"_on_BodyStats_death")
 	bodyStats.connect("death",hitboxController,"_pacify")
 	playerDetector.connect("player_detected",self,"_on_player_detected")
 	hurtboxController.connect("area_entered",self,"_on_Hurtbox_area_entered")
 	hurtboxController.connect("area_entered",bodyStats,"_on_Hurtbox_area_entered")
+	#hurtboxController.connect("area_entered",hurtboxController,"_display_hit")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -67,7 +65,6 @@ func _on_player_lost():#_lkp):
 	state = TRACK
 
 func _on_Hurtbox_area_entered(area): #Detects Collision from Player weapon
-	_display_hit()
 	velocity = area.getImpactDir() * Knockback
 
 func _on_BodyStats_death(): #Called when "death" signal received by BodyStats, emitted the first time health goes <= 0
@@ -80,12 +77,3 @@ func _on_BodyStats_death(): #Called when "death" signal received by BodyStats, e
 
 func _dying_complete(): #Called when the bat dying animation has completed
 	queue_free()
-
-func _display_hit(): #Triggers the hit animation
-	efSprite.set_frame(0)
-	efSprite.set_visible(true)
-	efSprite.play("Hit")
-
-func _hit_effect_done():#Hides the hit sprite and stops animation
-	efSprite.set_visible(false)
-	efSprite.stop()

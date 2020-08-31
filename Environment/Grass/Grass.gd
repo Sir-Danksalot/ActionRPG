@@ -6,6 +6,7 @@ extends Area2D
 # var b = "text"
 onready var sprite = $Sprite
 onready var animatedSprite = $AnimatedSprite
+onready var shadowSprite = $ShadowSprite
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,6 +23,7 @@ func _on_AnimatedSprite_animation_finished():
 
 func _on_Grass_area_entered(_area): #Checks for player attack and begins destruction animation
 	sprite.set_visible(false)
+	shadowSprite.set_visible(false)
 	animatedSprite.set_frame(0)
 	animatedSprite.set_visible(true)
 	animatedSprite.play("decay")
