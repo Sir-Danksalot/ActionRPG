@@ -8,11 +8,14 @@ onready var player = $YSort/Player
 onready var playerStats = $YSort/Player/StatsController
 onready var playerHealthUI = $CanvasLayer/PlayerHealthUI
 onready var worldPOV = $WorldPOV
+onready var deathScreen = $CanvasLayer/DeathScreen
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	deathScreen.set_visible(false)
 	playerStats.connect("health_changed",playerHealthUI,"_on_health_changed")
 	playerStats.connect("death",self,"_player_dead")
 	_configPlayerHealthUI()
+	randomize()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,3 +28,4 @@ func _configPlayerHealthUI():
 func _player_dead():
 	worldPOV.set_position(player.get_global_position())
 	worldPOV.make_current()
+	deathScreen.set_visible(true)

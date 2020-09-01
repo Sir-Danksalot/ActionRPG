@@ -9,6 +9,7 @@ enum{
 	MOVE
 	ROLL
 	ATTACK
+	DEAD
 }
 
 var Velocity = Vector2.ZERO
@@ -91,6 +92,8 @@ func _roll_animation_finished():
 	state = MOVE
 
 func _on_Death(): #Atm player dies before final hit animation plays, but can fix this by adding dying animation
+	state = DEAD
+	print("Death Animation Plays")
 	yield(get_tree().create_timer(1), "timeout") #ADD AN ACTUAL FOOKIN DEATH ANIMATION REEEEEEEEEE
 	queue_free()
 
