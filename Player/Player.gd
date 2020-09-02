@@ -30,9 +30,12 @@ onready var meleeCollision = $Melee_Controller
 onready var meleeCollisionShape = $Melee_Controller/Melee_CollisionShape
 onready var statsController = $StatsController
 onready var hurtboxController = $HurtboxController
-
+onready var sprite = $Sprite
+onready var animSprite = $AnimationSprite
+onready var shadSprite = $ShadowSprite
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	animSprite.set_visible(false)
 	animationTree.set_active(true) # Replace with function body.
 	meleeCollisionShape.set_disabled(true)
 	statsController.connect("death",self,"_on_Death")
@@ -93,9 +96,20 @@ func _roll_animation_finished():
 
 func _on_Death(): #Atm player dies before final hit animation plays, but can fix this by adding dying animation
 	state = DEAD
-	print("Death Animation Plays")
-	yield(get_tree().create_timer(1), "timeout") #ADD AN ACTUAL FOOKIN DEATH ANIMATION REEEEEEEEEE
+	#print("Death Animation Plays")
+	#hurtboxController.setHitEffects(false)
+	_play_Death_Animation()
+	yield(animSprite, "animation_finished") #ADD AN ACTUAL FOOKIN DEATH ANIMATION REEEEEEEEEE
 	queue_free()
 
 #func _on_Hurtbox_activated(hostile):
 #	pass
+func _play_Death_Animation():
+	#animSprite.set_animation("Death")
+	#animSprite.set_frame(0)
+	#animSprite.connect("animation_finished",self,"_dying_complete")
+	sprite.set_visible(false)
+	animationPlayer.stop()
+	shadSprite.set_visible(false)
+	animSprite.set_visible(true)
+	animSprite.play("death")

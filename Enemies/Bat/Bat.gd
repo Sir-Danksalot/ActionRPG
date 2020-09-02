@@ -5,6 +5,7 @@ enum {IDLE,WANDER,CHASE,TRACK}
 var state = WANDER#IDLE
 var velocity = Vector2.ZERO
 var orientation = Vector2.ZERO
+var wanderpos = Vector2.ZERO
 var player
 
 export var Knockback = 150
@@ -15,6 +16,7 @@ export var Chase_Speed = 120
 export var thrust = 450
 export var lastKnownPosTrackRadius = 30
 export var Track_Speed = 60
+export var Wander_Speed = 30
 
 onready var animSprite = $AnimatedSprite
 onready var shadSprite = $ShadowSprite
@@ -22,6 +24,7 @@ onready var bodyStats = $BodyStats
 onready var playerDetector = $PlayerDetector
 onready var hurtboxController = $HurtboxController
 onready var hitboxController = $HitboxController
+onready var rng = RandomNumberGenerator.new()
 #onready var detectionShape = $PlayerDetector/DetectionShape
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,6 +38,7 @@ func _ready():
 	playerDetector.connect("player_detected",self,"_on_player_detected")
 	hurtboxController.connect("area_entered",self,"_on_Hurtbox_area_entered")
 	hurtboxController.connect("area_entered",bodyStats,"_on_Hurtbox_area_entered")
+	rng.randomize()
 	#hurtboxController.connect("area_entered",hurtboxController,"_display_hit")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -48,8 +52,13 @@ func _physics_process(delta):
 	match state:
 		IDLE:
 			velocity = velocity.move_toward(Vector2.ZERO,Hover_Friction * delta)
-		WANDER:
-			pass
+			if rng.randf() < 0.25:
+				orientation = Vector2(rng.randf_range(-1,1),rng.randf_range(-1,1)).normalized()
+				state = WANDER
+		WANDER: #IMPROVE THIS, Maybe a Raycast for no collision?
+			velocity = velocity.move_toward(orientation * Wander_Speed,thrust * delta)
+			if rng.randf() < 0.01:
+				state = IDLE
 		CHASE:
 			orientation = playerDetector.getPlayerDir()
 			velocity = velocity.move_toward(orientation * Chase_Speed, thrust * delta)
@@ -73,6 +82,7 @@ func _on_BodyStats_death(): #Called when "death" signal received by BodyStats, e
 	#shadSprite.set_visible(false)
 	self.set_collision_layer_bit(4,false)
 	self.set_collision_mask_bit(1,false)
+	self.set_collision_mask_bit(4,false)
 	animSprite.set_animation("Die")
 	animSprite.set_frame(0)
 	animSprite.connect("animation_finished",self,"_dying_complete")
