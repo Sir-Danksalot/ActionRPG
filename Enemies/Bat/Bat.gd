@@ -6,7 +6,6 @@ var state = WANDER#IDLE
 var velocity = Vector2.ZERO
 var orientation = Vector2.ZERO
 var wanderpos = Vector2.ZERO
-var player
 
 export var Knockback = 150
 export var Air_Friction = 300
@@ -24,18 +23,21 @@ onready var bodyStats = $BodyStats
 onready var playerDetector = $PlayerDetector
 onready var hurtboxController = $HurtboxController
 onready var hitboxController = $HitboxController
+onready var audio = $AudioStreamPlayer
 onready var rng = RandomNumberGenerator.new()
 #onready var detectionShape = $PlayerDetector/DetectionShape
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animSprite.set_animation("Fly")
 	animSprite.set_visible(true)
+	animSprite.set_frame(rng.randi_range(0,4))
 	animSprite._set_playing(true)
 	shadSprite.set_visible(true)
 	bodyStats.connect("death",self,"_on_BodyStats_death")
 	bodyStats.connect("death",hitboxController,"_pacify")
 	bodyStats.connect("death",hurtboxController,"_parent_death")
 	playerDetector.connect("player_detected",self,"_on_player_detected")
+	playerDetector.connect("player_lost",self,"_on_player_lost")
 	hurtboxController.connect("area_entered",self,"_on_Hurtbox_area_entered")
 	hurtboxController.connect("area_entered",bodyStats,"_on_Hurtbox_area_entered")
 	rng.randomize()
@@ -63,7 +65,7 @@ func _physics_process(delta):
 			orientation = playerDetector.getPlayerDir()
 			velocity = velocity.move_toward(orientation * Chase_Speed, thrust * delta)
 		TRACK:
-			if self.get_global_position().distance_to(playerDetector.getLastKnownPosition()) >= lastKnownPosTrackRadius:
+			if playerDetector.getLastKnownPosition().length() >= lastKnownPosTrackRadius:
 				velocity = velocity.move_toward(playerDetector.getPlayerDir() * Track_Speed, thrust * delta)
 			else:
 				state = IDLE
@@ -85,6 +87,7 @@ func _on_BodyStats_death(): #Called when "death" signal received by BodyStats, e
 	self.set_collision_mask_bit(4,false)
 	animSprite.set_animation("Die")
 	animSprite.set_frame(0)
+	audio.play()
 	animSprite.connect("animation_finished",self,"_dying_complete")
 
 func _dying_complete(): #Called when the bat dying animation has completed

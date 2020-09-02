@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://Action RPG Resources/Player/Player.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
@@ -8,56 +8,60 @@
 [ext_resource path="res://Enemies/Utility/HurtboxController.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Action RPG Resources/Shadows/MediumShadow.png" type="Texture" id=7]
 [ext_resource path="res://Action RPG Resources/Effects/EnemyDeathEffect.png" type="Texture" id=8]
+[ext_resource path="res://Action RPG Resources/Music and Sounds/Swipe.wav" type="AudioStream" id=9]
+[ext_resource path="res://Action RPG Resources/Music and Sounds/Evade.wav" type="AudioStream" id=10]
+[ext_resource path="res://Action RPG Resources/Music and Sounds/Hurt.wav" type="AudioStream" id=11]
+[ext_resource path="res://Action RPG Resources/Music and Sounds/EnemyDie.wav" type="AudioStream" id=12]
 
-[sub_resource type="AtlasTexture" id=59]
+[sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 8 )
 region = Rect2( 0, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=60]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 8 )
 region = Rect2( 32, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=61]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 8 )
 region = Rect2( 64, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=62]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 8 )
 region = Rect2( 96, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=63]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 8 )
 region = Rect2( 128, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=64]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 8 )
 region = Rect2( 160, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=65]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 8 )
 region = Rect2( 192, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=66]
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 8 )
 region = Rect2( 224, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=67]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 8 )
 region = Rect2( 256, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=68]
+[sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 8 )
 region = Rect2( 288, 0, 32, 32 )
 
-[sub_resource type="SpriteFrames" id=69]
+[sub_resource type="SpriteFrames" id=11]
 animations = [ {
-"frames": [ SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ), SubResource( 67 ), SubResource( 68 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
 "loop": true,
 "name": "death",
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=70]
+[sub_resource type="Animation" id=12]
 length = 0.1
 loop = true
 tracks/0/type = "value"
@@ -73,7 +77,7 @@ tracks/0/keys = {
 "values": [ 18 ]
 }
 
-[sub_resource type="Animation" id=71]
+[sub_resource type="Animation" id=13]
 length = 0.1
 loop = true
 tracks/0/type = "value"
@@ -89,7 +93,7 @@ tracks/0/keys = {
 "values": [ 12 ]
 }
 
-[sub_resource type="Animation" id=72]
+[sub_resource type="Animation" id=14]
 length = 0.1
 loop = true
 tracks/0/type = "value"
@@ -105,7 +109,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=73]
+[sub_resource type="Animation" id=15]
 length = 0.1
 loop = true
 tracks/0/type = "value"
@@ -121,7 +125,7 @@ tracks/0/keys = {
 "values": [ 6 ]
 }
 
-[sub_resource type="Animation" id=74]
+[sub_resource type="Animation" id=16]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -149,8 +153,22 @@ tracks/1/keys = {
 "method": "_roll_animation_finished"
 } ]
 }
+tracks/2/type = "audio"
+tracks/2/path = NodePath("AudioStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 10 )
+} ],
+"times": PoolRealArray( 0.1 )
+}
 
-[sub_resource type="Animation" id=75]
+[sub_resource type="Animation" id=17]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -178,8 +196,22 @@ tracks/1/keys = {
 "method": "_roll_animation_finished"
 } ]
 }
+tracks/2/type = "audio"
+tracks/2/path = NodePath("AudioStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 10 )
+} ],
+"times": PoolRealArray( 0.1 )
+}
 
-[sub_resource type="Animation" id=76]
+[sub_resource type="Animation" id=18]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -207,8 +239,22 @@ tracks/1/keys = {
 "method": "_roll_animation_finished"
 } ]
 }
+tracks/2/type = "audio"
+tracks/2/path = NodePath("AudioStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 10 )
+} ],
+"times": PoolRealArray( 0.1 )
+}
 
-[sub_resource type="Animation" id=77]
+[sub_resource type="Animation" id=19]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -236,8 +282,22 @@ tracks/1/keys = {
 "method": "_roll_animation_finished"
 } ]
 }
+tracks/2/type = "audio"
+tracks/2/path = NodePath("AudioStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 10 )
+} ],
+"times": PoolRealArray( 0.1 )
+}
 
-[sub_resource type="Animation" id=78]
+[sub_resource type="Animation" id=20]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -253,7 +313,7 @@ tracks/0/keys = {
 "values": [ 19, 20, 21, 22, 23, 18 ]
 }
 
-[sub_resource type="Animation" id=79]
+[sub_resource type="Animation" id=21]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -269,7 +329,7 @@ tracks/0/keys = {
 "values": [ 13, 14, 15, 16, 17, 12 ]
 }
 
-[sub_resource type="Animation" id=80]
+[sub_resource type="Animation" id=22]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -285,7 +345,7 @@ tracks/0/keys = {
 "values": [ 1, 2, 3, 4, 5, 0 ]
 }
 
-[sub_resource type="Animation" id=81]
+[sub_resource type="Animation" id=23]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -301,7 +361,7 @@ tracks/0/keys = {
 "values": [ 7, 8, 9, 10, 11, 6 ]
 }
 
-[sub_resource type="Animation" id=82]
+[sub_resource type="Animation" id=24]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -365,8 +425,22 @@ tracks/4/keys = {
 "update": 0,
 "values": [ 90.0 ]
 }
+tracks/5/type = "audio"
+tracks/5/path = NodePath("AudioStreamPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+} ],
+"times": PoolRealArray( 0.1 )
+}
 
-[sub_resource type="Animation" id=83]
+[sub_resource type="Animation" id=25]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -430,8 +504,22 @@ tracks/4/keys = {
 "update": 0,
 "values": [ 180.0 ]
 }
+tracks/5/type = "audio"
+tracks/5/path = NodePath("AudioStreamPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+} ],
+"times": PoolRealArray( 0.1 )
+}
 
-[sub_resource type="Animation" id=84]
+[sub_resource type="Animation" id=26]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -495,8 +583,22 @@ tracks/4/keys = {
 "update": 0,
 "values": [ 0.0 ]
 }
+tracks/5/type = "audio"
+tracks/5/path = NodePath("AudioStreamPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+} ],
+"times": PoolRealArray( 0.1 )
+}
 
-[sub_resource type="Animation" id=85]
+[sub_resource type="Animation" id=27]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -559,6 +661,20 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ -90.0 ]
+}
+tracks/5/type = "audio"
+tracks/5/path = NodePath("AudioStreamPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+} ],
+"times": PoolRealArray( 0.1 )
 }
 
 [sub_resource type="AnimationNodeAnimation" id=28]
@@ -721,26 +837,29 @@ __meta__ = {
 }
 
 [node name="AnimationSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 69 )
+frames = SubResource( 11 )
 animation = "death"
 
+[node name="DeathSound" type="AudioStreamPlayer" parent="AnimationSprite"]
+stream = ExtResource( 12 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/idle_down = SubResource( 70 )
-anims/idle_left = SubResource( 71 )
-anims/idle_right = SubResource( 72 )
-anims/idle_up = SubResource( 73 )
-anims/roll_down = SubResource( 74 )
-anims/roll_left = SubResource( 75 )
-anims/roll_right = SubResource( 76 )
-anims/roll_up = SubResource( 77 )
-anims/run_down = SubResource( 78 )
-anims/run_left = SubResource( 79 )
-anims/run_right = SubResource( 80 )
-anims/run_up = SubResource( 81 )
-anims/slash_down = SubResource( 82 )
-anims/slash_left = SubResource( 83 )
-anims/slash_right = SubResource( 84 )
-anims/slash_up = SubResource( 85 )
+anims/idle_down = SubResource( 12 )
+anims/idle_left = SubResource( 13 )
+anims/idle_right = SubResource( 14 )
+anims/idle_up = SubResource( 15 )
+anims/roll_down = SubResource( 16 )
+anims/roll_left = SubResource( 17 )
+anims/roll_right = SubResource( 18 )
+anims/roll_up = SubResource( 19 )
+anims/run_down = SubResource( 20 )
+anims/run_left = SubResource( 21 )
+anims/run_right = SubResource( 22 )
+anims/run_up = SubResource( 23 )
+anims/slash_down = SubResource( 24 )
+anims/slash_left = SubResource( 25 )
+anims/slash_right = SubResource( 26 )
+anims/slash_up = SubResource( 27 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 54 )
@@ -759,8 +878,8 @@ __meta__ = {
 }
 
 [node name="Melee_Controller" type="Area2D" parent="."]
-position = Vector2( -3, -3 )
-rotation = -1.5708
+position = Vector2( 3, -4 )
+rotation = 1.5708
 collision_layer = 4
 collision_mask = 8
 script = ExtResource( 3 )
@@ -768,6 +887,7 @@ script = ExtResource( 3 )
 [node name="Melee_CollisionShape" type="CollisionShape2D" parent="Melee_Controller"]
 position = Vector2( 13.5, 3.5 )
 shape = SubResource( 57 )
+disabled = true
 
 [node name="WeaponData" type="Node" parent="Melee_Controller"]
 script = ExtResource( 4 )
@@ -783,8 +903,14 @@ collision_mask = 288
 position = Vector2( -0.5, -8 )
 shape = SubResource( 58 )
 
+[node name="AudioStreamPlayer" parent="HurtboxController" index="2"]
+stream = ExtResource( 11 )
+
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 process_mode = 0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
 
 [editable path="HurtboxController"]

@@ -33,6 +33,7 @@ onready var hurtboxController = $HurtboxController
 onready var sprite = $Sprite
 onready var animSprite = $AnimationSprite
 onready var shadSprite = $ShadowSprite
+onready var deathAudio = $AnimationSprite/DeathSound
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animSprite.set_visible(false)
@@ -54,6 +55,8 @@ func _physics_process(delta):
 			_roll_state(delta)
 		ATTACK:
 			_attack_state(delta)
+		DEAD:
+			pass
 
 func _move_state(delta):
 	Input_Vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -84,7 +87,8 @@ func _attack_state(_delta):
 	animationState.travel("attack_blend")
 
 func _attack_animation_finished():
-	state = MOVE
+	if state != DEAD:
+		state = MOVE
 
 func _roll_state(_delta):
 	Velocity = Roll_Vector.normalized() * Roll_Speed
@@ -92,10 +96,14 @@ func _roll_state(_delta):
 	Velocity = move_and_slide(Velocity)
 
 func _roll_animation_finished():
-	state = MOVE
+	if state != DEAD:
+		state = MOVE
 
 func _on_Death(): #Atm player dies before final hit animation plays, but can fix this by adding dying animation
 	state = DEAD
+	set_collision_layer_bit(1,false)
+	set_collision_layer_bit(0,true)
+	#set_collision_mask_bit()
 	#print("Death Animation Plays")
 	#hurtboxController.setHitEffects(false)
 	_play_Death_Animation()
@@ -113,3 +121,4 @@ func _play_Death_Animation():
 	shadSprite.set_visible(false)
 	animSprite.set_visible(true)
 	animSprite.play("death")
+	deathAudio.play()

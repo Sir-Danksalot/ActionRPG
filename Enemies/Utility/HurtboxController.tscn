@@ -31,3 +31,5 @@ visible = false
 frames = SubResource( 3 )
 animation = "Hit"
 offset = Vector2( 0, -12 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
