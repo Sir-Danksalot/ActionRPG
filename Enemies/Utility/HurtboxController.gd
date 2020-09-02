@@ -14,7 +14,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-func _display_hit(_area): #Triggers the hit animation
+func _display_hit(_area:Area2D): #Triggers the hit animation
 	if Hit_Effects:
 		efSprite.set_frame(0)
 		efSprite.set_visible(true)
@@ -28,7 +28,7 @@ func _hit_effect_done():#Hides the hit sprite and stops animation
 func setHitEffects(yeno:bool):
 	Hit_Effects = yeno
 	
-func getHitEffects():
+func getHitEffects() -> bool:
 	return Hit_Effects
 
 func _parent_death():

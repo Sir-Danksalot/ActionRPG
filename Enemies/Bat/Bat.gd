@@ -3,19 +3,19 @@ extends KinematicBody2D
 enum {IDLE,WANDER,CHASE,TRACK}
 
 var state = WANDER#IDLE
-var velocity = Vector2.ZERO
-var orientation = Vector2.ZERO
-var wanderpos = Vector2.ZERO
+var velocity:Vector2 = Vector2.ZERO
+var orientation:Vector2 = Vector2.ZERO
+var wanderpos:Vector2 = Vector2.ZERO
 
-export var Knockback = 150
-export var Air_Friction = 300
-export var Hover_Friction = 600
-export var MaxHealth = 1.0
-export var Chase_Speed = 120
-export var thrust = 450
-export var lastKnownPosTrackRadius = 30
-export var Track_Speed = 60
-export var Wander_Speed = 30
+export(float) var Knockback = 150
+export(float) var Air_Friction = 300
+export(float) var Hover_Friction = 600
+#export(int) var MaxHealth = 1
+export(float) var Chase_Speed = 120
+export(float) var thrust = 450
+export(float) var lastKnownPosTrackRadius = 30
+export(float) var Track_Speed = 60
+export(float) var Wander_Speed = 30
 
 onready var animSprite = $AnimatedSprite
 onready var shadSprite = $ShadowSprite
@@ -24,13 +24,14 @@ onready var playerDetector = $PlayerDetector
 onready var hurtboxController = $HurtboxController
 onready var hitboxController = $HitboxController
 onready var audio = $AudioStreamPlayer
-onready var rng = RandomNumberGenerator.new()
+onready var wanderController = $WanderController
+#onready var rng = RandomNumberGenerator.new()
 #onready var detectionShape = $PlayerDetector/DetectionShape
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animSprite.set_animation("Fly")
 	animSprite.set_visible(true)
-	animSprite.set_frame(rng.randi_range(0,4))
+	#animSprite.set_frame(randi_range(0,4))
 	animSprite._set_playing(true)
 	shadSprite.set_visible(true)
 	bodyStats.connect("death",self,"_on_BodyStats_death")
@@ -40,7 +41,6 @@ func _ready():
 	playerDetector.connect("player_lost",self,"_on_player_lost")
 	hurtboxController.connect("area_entered",self,"_on_Hurtbox_area_entered")
 	hurtboxController.connect("area_entered",bodyStats,"_on_Hurtbox_area_entered")
-	rng.randomize()
 	#hurtboxController.connect("area_entered",hurtboxController,"_display_hit")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -54,13 +54,15 @@ func _physics_process(delta):
 	match state:
 		IDLE:
 			velocity = velocity.move_toward(Vector2.ZERO,Hover_Friction * delta)
-			if rng.randf() < 0.25:
-				orientation = Vector2(rng.randf_range(-1,1),rng.randf_range(-1,1)).normalized()
-				state = WANDER
+			_wander_choice()
+			#if rng.randf() < 0.25:
+				#orientation = Vector2(rng.randf_range(-1,1),rng.randf_range(-1,1)).normalized()
+				#state = WANDER
 		WANDER: #IMPROVE THIS, Maybe a Raycast for no collision?
 			velocity = velocity.move_toward(orientation * Wander_Speed,thrust * delta)
-			if rng.randf() < 0.01:
-				state = IDLE
+			_wander_choice()
+			#if rng.randf() < 0.01:
+			#	state = IDLE
 		CHASE:
 			orientation = playerDetector.getPlayerDir()
 			velocity = velocity.move_toward(orientation * Chase_Speed, thrust * delta)
@@ -76,7 +78,7 @@ func _on_player_detected():#_relpos):
 func _on_player_lost():#_lkp):
 	state = TRACK
 
-func _on_Hurtbox_area_entered(area): #Detects Collision from Player weapon
+func _on_Hurtbox_area_entered(area:Area2D): #Detects Collision from Player weapon
 	velocity = area.getImpactDir() * Knockback
 
 func _on_BodyStats_death(): #Called when "death" signal received by BodyStats, emitted the first time health goes <= 0
@@ -92,3 +94,10 @@ func _on_BodyStats_death(): #Called when "death" signal received by BodyStats, e
 
 func _dying_complete(): #Called when the bat dying animation has completed
 	queue_free()
+
+func _wander_choice():
+	if wanderController.getChoiceExpired():
+		state = wanderController.wanderChoice([IDLE,WANDER])
+		#print("State Chosen")
+		if state == WANDER:
+			orientation = wanderController.configure().normalized()

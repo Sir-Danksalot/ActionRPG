@@ -21,7 +21,7 @@ func _ready():
 func _on_AnimatedSprite_animation_finished():
 	queue_free() # Replace with function body.
 
-func _on_Grass_area_entered(_area): #Checks for player attack and begins destruction animation
+func _on_Grass_area_entered(_area:Area2D): #Checks for player attack and begins destruction animation
 	sprite.set_visible(false)
 	shadowSprite.set_visible(false)
 	animatedSprite.set_frame(0)

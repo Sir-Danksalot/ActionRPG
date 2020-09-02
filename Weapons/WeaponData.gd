@@ -11,7 +11,7 @@ func _ready():
 	setKind(MELEE)
 	setRawDamage(1)
 
-func computeDamage():
+func computeDamage() -> float:
 	return getRawDamage()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

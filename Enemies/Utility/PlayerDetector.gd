@@ -1,31 +1,31 @@
 extends Area2D
 
-var player = null
-var rawLastKnownPosition
-var lastKnownPosition
+var player:KinematicBody2D = null
+var rawLastKnownPosition:Vector2
+var lastKnownPosition:Vector2
 
 signal player_detected
 signal player_lost
 
-func isPlayerDetected():
+func isPlayerDetected() -> bool:
 	return player != null
 
-func getPlayer():
+func getPlayer() -> KinematicBody2D:
 	return player
 
-func getCurrentPlayerDir():
+func getCurrentPlayerDir() -> Vector2:
 	return self.get_global_position().direction_to(player.get_global_position())
 
-func getPlayerDir():
+func getPlayerDir() -> Vector2:
 	if isPlayerDetected():
 		return getCurrentPlayerDir()
 	else:
 		return getLastKnownPosition().normalized()
 
-func getLastKnownPosition():
+func getLastKnownPosition() -> Vector2:
 	return rawLastKnownPosition - self.get_global_position()
 	
-func getRawLastKnownPosition():
+func getRawLastKnownPosition() -> Vector2:
 	return rawLastKnownPosition
 
 func _ready():
@@ -36,12 +36,12 @@ func _ready():
 
 #Next few need to be modified for multiplayer
 
-func _playerBodyDetected(plyr):
+func _playerBodyDetected(plyr:KinematicBody2D):
 	player = plyr
 	rawLastKnownPosition = player.get_global_position()
 	emit_signal("player_detected")#,getLastKnownPosition())
 
-func _playerBodyLeft(plyr):
+func _playerBodyLeft(plyr:KinematicBody2D):
 	rawLastKnownPosition = plyr.get_global_position()
 	player = null
 	emit_signal("player_lost")#,getLastKnownPosition())

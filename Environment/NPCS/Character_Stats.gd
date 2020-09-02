@@ -2,28 +2,28 @@ extends Node
 
 enum {ALIVE, DEAD}
 
-export(int) var maxHealth
-var health
+export(float) var maxHealth
+var health:float
 var life = ALIVE
 
 signal health_changed(health)
 signal death
 
-func getMaxHealth():
+func getMaxHealth() -> float:
 	return maxHealth
 
-func setMaxHealth(mhp):
+func setMaxHealth(mhp:float):
 	maxHealth = mhp
 
-func getHealth():
+func getHealth() -> float:
 	return health
 
-func setHealth(hp):
+func setHealth(hp:float):
 	health = min(hp, maxHealth)
 	emit_signal("health_changed",health)
 	checkDeath()
 
-func forceSetHealth(hp):
+func forceSetHealth(hp:float):
 	health = hp
 
 func checkAlive():
@@ -37,11 +37,11 @@ func checkDeath(): #Checks if dead and if a transition from Alive to Dead is det
 	else:
 		life = ALIVE
 
-func changeHealth(difference): #Reduces health and checks for death
+func changeHealth(difference:float): #Reduces health and checks for death
 	if difference != 0:
 		health += difference
 		emit_signal("health_changed",health)
 	checkDeath()
 
-func _on_Hurtbox_area_entered(hitbox): #Detects Collision from hitbox
+func _on_Hurtbox_area_entered(hitbox:Area2D): #Detects Collision from hitbox
 	changeHealth(-1*hitbox.computeDamage())

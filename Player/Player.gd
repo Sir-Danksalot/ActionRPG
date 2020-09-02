@@ -12,16 +12,16 @@ enum{
 	DEAD
 }
 
-var Velocity = Vector2.ZERO
-var Input_Vector = Vector2.ZERO
-var Roll_Vector = Vector2.LEFT
+var Velocity:Vector2 = Vector2.ZERO
+var Input_Vector:Vector2 = Vector2.ZERO
+var Roll_Vector:Vector2 = Vector2.LEFT
 var state = MOVE
 
-export var Max_Velocity = 150
-export var Acceleration = 600
-export var Static_Friction = 1200
-export var Kinetic_Friction = 300
-export var Roll_Speed = 150
+export(float) var Max_Velocity = 150
+export(float) var Acceleration = 600
+export(float) var Static_Friction = 1200
+export(float) var Kinetic_Friction = 300
+export(float) var Roll_Speed = 150
 
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree

@@ -8,8 +8,8 @@ extends Node
 
 enum {MELEE, RANGED}
 
-export(int) var raw_damage
-export(int) var durability
+export(float) var raw_damage
+export(float) var durability
 var type
 # Called when the node enters the scene tree for the first time.
 #func _ready():
@@ -23,8 +23,8 @@ var type
 func setKind(kind):
 	type = kind
 	
-func setRawDamage(dmg):
+func setRawDamage(dmg:float):
 	raw_damage = dmg
 
-func getRawDamage():
+func getRawDamage() -> float:
 	return raw_damage
