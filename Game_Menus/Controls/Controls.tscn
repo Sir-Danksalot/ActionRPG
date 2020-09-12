@@ -38,7 +38,7 @@ __meta__ = {
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 310.0
-margin_bottom = 170.0
+margin_bottom = 180.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
@@ -56,24 +56,25 @@ text = "Controls"
 [node name="Content" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 24.0
 margin_right = 300.0
-margin_bottom = 130.0
+margin_bottom = 140.0
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Content"]
-margin_left = 50.0
-margin_top = 12.0
-margin_right = 249.0
-margin_bottom = 94.0
-text = "Movement: WASD, Arrow Keys.
+margin_left = 52.0
+margin_right = 247.0
+margin_bottom = 116.0
+text = "Movement: WASD, Arrow Keys
 
 Attack: Space, LAlt, Left Click
 
-Roll: Shift, LCtrl, Right Click"
+Roll: Shift, LCtrl, Right Click
+
+Pause: Tab, P"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 140.0
+margin_top = 150.0
 margin_right = 300.0
-margin_bottom = 160.0
+margin_bottom = 170.0
 
 [node name="Container" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 margin_right = 213.0
