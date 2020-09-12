@@ -15,8 +15,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Youtube_ActionRPG"
-run/main_scene="res://Environment/World/World.tscn"
+config/name="ActionRPG"
+run/main_scene="res://Game_Menus/Main_Menu/Main_Menu.tscn"
 config/icon="res://icon.png"
 
 [display]
