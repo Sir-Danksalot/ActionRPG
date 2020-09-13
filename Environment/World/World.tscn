@@ -907,18 +907,19 @@ position = Vector2( 114.685, -95.9217 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PlayerHealthUI" parent="CanvasLayer" instance=ExtResource( 9 )]
+margin_bottom = 0.0
 
 [node name="DeathScreen" type="VBoxContainer" parent="CanvasLayer"]
-margin_right = 320.0
-margin_bottom = 180.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_min_size = Vector2( 320, 180 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/DeathScreen"]
-margin_right = 320.0
-margin_bottom = 137.0
+margin_right = 1280.0
+margin_bottom = 698.0
 rect_min_size = Vector2( 320, 90 )
 size_flags_vertical = 3
 __meta__ = {
@@ -926,10 +927,10 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="CanvasLayer/DeathScreen/CenterContainer"]
-margin_left = 119.0
-margin_top = 58.0
-margin_right = 201.0
-margin_bottom = 78.0
+margin_left = 599.0
+margin_top = 339.0
+margin_right = 681.0
+margin_bottom = 359.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 77, 20 )
@@ -938,9 +939,9 @@ custom_colors/font_color = Color( 0.607843, 0.101961, 0.101961, 1 )
 text = "YOU DIED"
 
 [node name="Label" type="Label" parent="CanvasLayer/DeathScreen"]
-margin_top = 141.0
-margin_right = 320.0
-margin_bottom = 180.0
+margin_top = 702.0
+margin_right = 1280.0
+margin_bottom = 720.0
 custom_fonts/font = SubResource( 51 )
 text = "Hohoho look at me and my Epic video game references"
 align = 1

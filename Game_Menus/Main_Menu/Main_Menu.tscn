@@ -38,11 +38,11 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.4
 
 [node name="TempTitle" type="Label" parent="TitleContentVBoxContainer/Title"]
-margin_left = 120.0
-margin_top = 14.8915
-margin_right = 180.155
-margin_bottom = 28.8915
+anchor_right = 1.0
+anchor_bottom = 1.0
 text = "Proofs and Types"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
