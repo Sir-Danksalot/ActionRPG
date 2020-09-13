@@ -4,8 +4,8 @@
 [ext_resource path="res://Action RPG Resources/Shadows/LargeShadow.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 6.08992
-height = 6.61855
+radius = 24.36
+height = 26.476
 
 [node name="TREE(3)" type="StaticBody2D"]
 collision_mask = 0
@@ -15,7 +15,7 @@ texture = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-offset = Vector2( 0, -20 )
+offset = Vector2( 0, -80 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
