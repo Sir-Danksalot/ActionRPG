@@ -1,0 +1,120 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Game_Menus/Main_Menu/Main_Menu_Background_temp.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/prof_sol.png" type="Texture" id=2]
+[ext_resource path="res://Game_Menus/Main_Menu/Main_Menu.gd" type="Script" id=3]
+
+[node name="Main_Menu" type="MarginContainer"]
+margin_right = 320.0
+margin_bottom = 180.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="TextureRect" parent="."]
+margin_right = 320.0
+margin_bottom = 180.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleContentVBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 320.0
+margin_bottom = 180.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="TextureRect" parent="TitleContentVBoxContainer"]
+margin_right = 320.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.4
+
+[node name="TempTitle" type="Label" parent="TitleContentVBoxContainer/Title"]
+margin_left = 120.0
+margin_top = 14.8915
+margin_right = 180.155
+margin_bottom = 28.8915
+text = "Proofs and Types"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionsPropHBoxContainer" type="HBoxContainer" parent="TitleContentVBoxContainer"]
+margin_top = 54.0
+margin_right = 320.0
+margin_bottom = 180.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="OptionsMarginContainer" type="MarginContainer" parent="TitleContentVBoxContainer/OptionsPropHBoxContainer"]
+margin_right = 158.0
+margin_bottom = 126.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_top = 10
+custom_constants/margin_bottom = 10
+
+[node name="OptionsVBoxContainer" type="VBoxContainer" parent="TitleContentVBoxContainer/OptionsPropHBoxContainer/OptionsMarginContainer"]
+margin_top = 10.0
+margin_right = 158.0
+margin_bottom = 116.0
+size_flags_horizontal = 3
+
+[node name="ContinueContainer" type="CenterContainer" parent="TitleContentVBoxContainer/OptionsPropHBoxContainer/OptionsMarginContainer/OptionsVBoxContainer"]
+visible = false
+margin_right = 158.0
+margin_bottom = 32.0
+size_flags_vertical = 3
+
+[node name="Continue" type="Button" parent="TitleContentVBoxContainer/OptionsPropHBoxContainer/OptionsMarginContainer/OptionsVBoxContainer/ContinueContainer"]
+margin_left = 44.0
+margin_top = 6.0
+margin_right = 113.0
+margin_bottom = 26.0
+text = "Continue"
+flat = true
+
+[node name="NewGameContainer" type="CenterContainer" parent="TitleContentVBoxContainer/OptionsPropHBoxContainer/OptionsMarginContainer/OptionsVBoxContainer"]
+margin_right = 158.0
+margin_bottom = 51.0
+size_flags_vertical = 3
+
+[node name="NewGame" type="Button" parent="TitleContentVBoxContainer/OptionsPropHBoxContainer/OptionsMarginContainer/OptionsVBoxContainer/NewGameContainer"]
+margin_left = 38.0
+margin_top = 15.0
+margin_right = 120.0
+margin_bottom = 35.0
+text = "New Game"
+flat = true
+
+[node name="ControlsContainer" type="CenterContainer" parent="TitleContentVBoxContainer/OptionsPropHBoxContainer/OptionsMarginContainer/OptionsVBoxContainer"]
+margin_top = 55.0
+margin_right = 158.0
+margin_bottom = 106.0
+size_flags_vertical = 3
+
+[node name="Controls" type="Button" parent="TitleContentVBoxContainer/OptionsPropHBoxContainer/OptionsMarginContainer/OptionsVBoxContainer/ControlsContainer"]
+margin_left = 46.0
+margin_top = 15.0
+margin_right = 111.0
+margin_bottom = 35.0
+text = "Controls"
+flat = true
+
+[node name="PropTexture" type="TextureRect" parent="TitleContentVBoxContainer/OptionsPropHBoxContainer"]
+margin_left = 162.0
+margin_right = 320.0
+margin_bottom = 126.0
+size_flags_horizontal = 3
+texture = ExtResource( 2 )
+expand = true
+flip_h = true
+[connection signal="pressed" from="TitleContentVBoxContainer/OptionsPropHBoxContainer/OptionsMarginContainer/OptionsVBoxContainer/NewGameContainer/NewGame" to="." method="_on_NewGame_pressed"]
+[connection signal="pressed" from="TitleContentVBoxContainer/OptionsPropHBoxContainer/OptionsMarginContainer/OptionsVBoxContainer/ControlsContainer/Controls" to="." method="_on_Controls_pressed"]
