@@ -12,7 +12,7 @@ onready var wpnDat = $WeaponData
 func computeDamage() -> float:
 	return wpnDat.computeDamage()
 
-func setImpactDir(dir:Vector2):
+func setImpactDir(dir:Vector2)->void:
 	attack_direction = dir
 
 func getImpactDir() -> Vector2:

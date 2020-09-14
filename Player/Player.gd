@@ -17,11 +17,11 @@ var Input_Vector:Vector2 = Vector2.ZERO
 var Roll_Vector:Vector2 = Vector2.LEFT
 var state = MOVE
 
-export(float) var Max_Velocity = 150
-export(float) var Acceleration = 600
-export(float) var Static_Friction = 1200
-export(float) var Kinetic_Friction = 300
-export(float) var Roll_Speed = 150
+export(float) var Max_Velocity = 600
+export(float) var Acceleration = 2400
+export(float) var Static_Friction = 4800
+export(float) var Kinetic_Friction = 1200
+export(float) var Roll_Speed = 600
 
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree

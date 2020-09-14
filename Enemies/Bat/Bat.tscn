@@ -147,7 +147,7 @@ shape = SubResource( 20 )
 raw_damage = 1.0
 
 [node name="WanderController" parent="." instance=ExtResource( 10 )]
-wander_range = 0.0
+wander_range = 300.0
 
 [editable path="HurtboxController"]
 
