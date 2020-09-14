@@ -7,15 +7,15 @@ var velocity:Vector2 = Vector2.ZERO
 var orientation:Vector2 = Vector2.ZERO
 var wanderpos:Vector2 = Vector2.ZERO
 
-export(float) var Knockback = 150
-export(float) var Air_Friction = 300
-export(float) var Hover_Friction = 600
+export(float) var Knockback = 600
+export(float) var Air_Friction = 1200
+export(float) var Hover_Friction = 1800
 #export(int) var MaxHealth = 1
-export(float) var Chase_Speed = 120
-export(float) var thrust = 450
-export(float) var lastKnownPosTrackRadius = 30
-export(float) var Track_Speed = 60
-export(float) var Wander_Speed = 30
+export(float) var Chase_Speed = 480
+export(float) var thrust = 1800
+export(float) var lastKnownPosTrackRadius = 120
+export(float) var Track_Speed = 240
+export(float) var Wander_Speed = 120
 
 onready var animSprite = $AnimatedSprite
 onready var shadSprite = $ShadowSprite
