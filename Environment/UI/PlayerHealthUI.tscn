@@ -14,8 +14,8 @@ __meta__ = {
 }
 
 [node name="MaxHealth" type="TextureRect" parent="."]
-margin_right = 147.0
-margin_bottom = 11.0
+margin_right = 300.0
+margin_bottom = 44.0
 texture = ExtResource( 2 )
 expand = true
 stretch_mode = 2
@@ -24,8 +24,8 @@ __meta__ = {
 }
 
 [node name="CurrentHealth" type="TextureRect" parent="."]
-margin_right = 15.0
-margin_bottom = 11.0
+margin_right = 60.0
+margin_bottom = 44.0
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 2
