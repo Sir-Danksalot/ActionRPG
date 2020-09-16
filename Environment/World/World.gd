@@ -6,9 +6,9 @@ extends Node2D
 # var b = "text"
 onready var player = $YSort/Player
 onready var playerStats = $YSort/Player/StatsController
-onready var playerHealthUI = $CanvasLayer/PlayerHealthUI
+onready var playerHealthUI = $HUD/PlayerHealthUI
 onready var worldPOV = $WorldPOV
-onready var deathScreen = $CanvasLayer/DeathScreen
+onready var deathScreen = $HUD/DeathScreen
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	deathScreen.set_visible(false)
