@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Environment/NPCS/SPS/prof_sol.png" type="Texture" id=1]
+[ext_resource path="res://Environment/NPCS/SPS/SPS.gd" type="Script" id=2]
+[ext_resource path="res://Enemies/Utility/HurtboxController.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Environment/NPCS/SPS/BodyStats.gd" type="Script" id=4]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 14.0
+height = 22.0
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 25.0
+height = 120.0
+
+[node name="SPS" type="KinematicBody2D"]
+collision_layer = 16
+collision_mask = 19
+script = ExtResource( 2 )
+
+[node name="BodySprite" type="Sprite" parent="."]
+
+[node name="ShadSprite" type="Sprite" parent="."]
+
+[node name="tempSprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 1, -80 )
+
+[node name="Movement_Collider" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="HurtboxController" parent="." instance=ExtResource( 3 )]
+collision_layer = 128
+collision_mask = 292
+
+[node name="Hurtbox" parent="HurtboxController" index="0"]
+position = Vector2( -5, -80 )
+shape = SubResource( 2 )
+
+[node name="EffectSprite" parent="HurtboxController" index="1"]
+visible = true
+position = Vector2( 10, -100 )
+
+[node name="BodyStats" type="Node" parent="."]
+script = ExtResource( 4 )
+maxHealth = 10.0
+
+[editable path="HurtboxController"]
