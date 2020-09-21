@@ -8,4 +8,6 @@ Follow the instructions [here](https://docs.godotengine.org/en/stable/getting_st
 
 Some resources have been taken from [Heartbeast](https://github.com/uheartbeast/youtube-tutorials/tree/master/Action%20RPG)'s Youtube course
 
-The dialogue system currently used is [Emilio](https://github.com/coppolaemilio/godot-simple-dialog)'s
+The dialogue box frontend system currently used is [Emilio](https://github.com/coppolaemilio/godot-simple-dialog)'s
+
+The dialogue tree backend is [Alexander](https://github.com/EmAlexander/DialogueTreePlugin)'s
