@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/next-indicator.png-4f82145d803a7a1f32c99d3665b933e8.stex"
+path="res://.import/next-indicator.png-121c3e73aab17fe1c1ee212a5b876929.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/dialogs/Images/next-indicator.png"
-dest_files=[ "res://.import/next-indicator.png-4f82145d803a7a1f32c99d3665b933e8.stex" ]
+source_file="res://temp/godot-simple-dialog/addons/dialogs/Images/next-indicator.png"
+dest_files=[ "res://.import/next-indicator.png-121c3e73aab17fe1c1ee212a5b876929.stex" ]
 
 [params]
 
