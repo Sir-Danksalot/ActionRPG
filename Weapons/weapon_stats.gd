@@ -20,10 +20,10 @@ var type
 #func _process(delta):
 #	pass
 
-func setKind(kind):
+func setKind(kind)->void:
 	type = kind
 	
-func setRawDamage(dmg:float):
+func setRawDamage(dmg:float)->void:
 	raw_damage = dmg
 
 func getRawDamage() -> float:

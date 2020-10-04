@@ -10,6 +10,7 @@ enum{
 	ROLL
 	ATTACK
 	DEAD
+	DIALOGUE
 }
 
 var Velocity:Vector2 = Vector2.ZERO
@@ -56,6 +57,8 @@ func _physics_process(delta):
 		ATTACK:
 			_attack_state(delta)
 		DEAD:
+			pass
+		DIALOGUE:
 			pass
 
 func _move_state(delta):

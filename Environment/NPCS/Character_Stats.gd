@@ -44,4 +44,5 @@ func changeHealth(difference:float): #Reduces health and checks for death
 	checkDeath()
 
 func _on_Hurtbox_area_entered(hitbox:Area2D): #Detects Collision from hitbox
-	changeHealth(-1*hitbox.computeDamage())
+	if hitbox.is_in_group("damaging"):
+		changeHealth(-1*hitbox.computeDamage())

@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Action RPG Resources/World/GrassBackground.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Environment/Props/Tree_Static.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Player/HUD.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Environment/World/World.gd" type="Script" id=10]
+[ext_resource path="res://Environment/NPCS/SPS/SPS.tscn" type="PackedScene" id=11]
 
 [sub_resource type="TileSet" id=1]
 0/name = "DirtTileset.png 0"
@@ -893,5 +894,8 @@ position = Vector2( 1499.8, 274.116 )
 
 [node name="Bat36" parent="YSort/Bats" instance=ExtResource( 7 )]
 position = Vector2( 458.74, -383.688 )
+
+[node name="SPS" parent="YSort" instance=ExtResource( 11 )]
+position = Vector2( 488.643, 162.881 )
 
 [node name="HUD" parent="." instance=ExtResource( 9 )]
